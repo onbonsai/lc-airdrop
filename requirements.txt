@@ -1,0 +1,3 @@
+openrank-sdk
+web3==6.15.1
+pandas==2.2.1
