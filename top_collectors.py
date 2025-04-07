@@ -1,9 +1,11 @@
 from web3 import Web3
 import pandas as pd
 import time
+import os
 
 # Connect to Polygon network
-w3 = Web3(Web3.HTTPProvider("https://polygon-mainnet.g.alchemy.com/v2/0OljFyjtQFwrzEVaOPHR8LnyEEndOawl"))
+POLYGON_RPC_URL = os.environ.get("POLYGON_RPC_URL")
+w3 = Web3(Web3.HTTPProvider(POLYGON_RPC_URL))
 
 # Contract address and ABI
 LENS_COLLECT = "0x0D90C58cBe787CD70B5Effe94Ce58185D72143fB"  # Collect Module
