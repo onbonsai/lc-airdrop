@@ -2,15 +2,8 @@ import pandas as pd
 from openrank_sdk import EigenTrust
 import os
 
-# Check if API key is set
-api_key = os.environ.get("OPENRANK_API_KEY")
-if not api_key:
-    print("Error: OPENRANK_API_KEY environment variable is not set")
-    print("Please set your OpenRank API key with: export OPENRANK_API_KEY=your_api_key")
-    exit(1)
-
-# Initialize EigenTrust
-eigentrust = EigenTrust(api_key=api_key)
+# Initialize EigenTrust. No API key needed.
+eigentrust = EigenTrust(api_key="")
 
 # Read the collector graph data
 print("Reading collector graph data...")

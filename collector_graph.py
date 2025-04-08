@@ -103,10 +103,19 @@ def process_block_range(from_block, to_block, collector_graph):
                 # Decode collect action data
                 token_address, amount = decode_collect_action_data(collect_action_data)
 
+                # Skip if amount is zero
+                if amount == 0:
+                    continue
+
                 # Check if this is a Bonsai token collection
                 if token_address == BONSAI_TOKEN.lower():
                     # Get the address of the profile that was collected from
                     collected_from_address = get_owner_address(collected_profile_id).lower()
+
+                    # Check if collector address is the same as collected_from_address
+                    if collector_address == collected_from_address:
+                        # Skip this event if it's a self-collection
+                        continue
 
                     # Create a unique key for this collector-collected_from pair
                     edge_key = f"{collector_address}-{collected_from_address}"
