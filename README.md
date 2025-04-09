@@ -21,23 +21,27 @@ This repository contains tools for analyzing collector behavior on the Lens Prot
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/lc-airdrop.git
 cd lc-airdrop
 ```
 
 2. Create and activate a virtual environment:
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows, use: venv\Scripts\activate
 ```
 
 3. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
 4. Create a `.env` file with your Polygon RPC URL:
+
 ```
 POLYGON_RPC_URL=your_polygon_rpc_url_here
 ```
@@ -49,25 +53,37 @@ POLYGON_RPC_URL=your_polygon_rpc_url_here
 - `compute_eigentrust.py`: Computes EigenTrust scores for collectors
 - `generate_merkle_tree.py`: Creates a Merkle tree for airdrop eligibility
 - `lens_abi.py`: Contains Lens Protocol smart contract ABIs
+- `filter_collector_graph.py`: Filters the collector graph to remove self-edges and zero-value edges
 
 ## Usage
 
 1. Generate collector graph:
+
 ```bash
 python collector_graph.py
 ```
 
 2. Identify top collectors:
+
 ```bash
 python top_collectors.py
 ```
 
+2.1 Filter collector graph:
+Not strictly necessary but removes warnings when running compute_eigentrust.py
+
+```bash
+python filter_collector_graph.py
+```
+
 3. Compute EigenTrust scores:
+
 ```bash
 python compute_eigentrust.py
 ```
 
 4. Generate Merkle tree:
+
 ```bash
 python generate_merkle_tree.py
 ```
@@ -76,11 +92,5 @@ python generate_merkle_tree.py
 
 - `collector_graph.csv`: Contains the generated collector interaction graph
 - `ranked_bonsai_collectors.csv`: List of ranked Bonsai token collectors
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
+- `eigentrust_rankings.csv`: List of ranked collectors with EigenTrust scores
+- `merkle_proofs.json`: Merkle proofs for airdrop eligibility
